@@ -1,0 +1,90 @@
+
+
+.dashboard {
+  display: flex;
+  min-height: 100vh;
+  background: #1a1a1a;
+}
+
+
+
+.Navbar {
+  width: 240px; 
+  height: 100vh;
+  position: fixed; 
+  top: 0;
+  left: 0;
+}
+
+
+
+.main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+
+  padding: 30px 42px 150px; 
+  overflow-y: auto;
+
+  color: white;
+
+
+  
+}
+
+
+
+.topbar {
+  display: flex;
+  align-items: center;
+  width: 100%;        
+}
+
+.topbar-left {
+  flex: 1;                
+  display: flex;
+}
+
+
+
+.right-icons {
+  display: flex;
+  align-items: center;
+  margin-left: auto;
+  gap: 100px;  
+ 
+}
+
+
+
+.section {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-bottom: 48px;
+}
+
+.section h2 {
+  font-size: 24px;
+  font-weight: 600;
+}
+
+
+
+.card-row {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: 32px;
+}
+
+
+.bottombar {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+
+  width: 100%;
+  height: 90px;
+  background: #202020;
+  z-index: 10;
+}
