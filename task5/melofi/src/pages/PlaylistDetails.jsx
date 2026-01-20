@@ -10,60 +10,36 @@ import Profile from "../components/profile";
 import Bottombar from "../components/bottombar";
 import dots from "../assets/more.png";
 import { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
 import { usePlayer } from "../components/PlayerContext";
 
-function MySongs() {
+function PlaylistDetails() {
+  const { playlistId } = useParams();
   const [songs, setSongs] = useState([]);
   const { playSong } = usePlayer();
 
-  const userId = localStorage.getItem("user_id");
 
-  
   useEffect(() => {
-    const fetchLikedSongs = async () => {
-      try {
-        
-        const res = await fetch(
-          `http://127.0.0.1:5000/users/${userId}/playlists`
-        );
-        const playlists = await res.json();
+    fetch(`http://127.0.0.1:5000/playlists/${playlistId}/songs`)
+      .then(res => res.json())
+      .then(data => setSongs(data))
+      .catch(err => console.error(err));
+  }, [playlistId]);
 
-        
-        const likedPlaylist = playlists.find(
-          (p) => p.name === "Liked Songs"
-        );
 
-        if (!likedPlaylist) return;
-
-        
-        const songsRes = await fetch(
-          `http://127.0.0.1:5000/playlists/${likedPlaylist.id}/songs`
-        );
-        const songsData = await songsRes.json();
-
-        setSongs(songsData);
-      } catch (err) {
-        console.error("Failed to load liked songs", err);
-      }
-    };
-
-    if (userId) fetchLikedSongs();
-  }, [userId]);
-
- 
-  const removeFromLiked = async (songId) => {
+  const removeSong = async (songId) => {
     try {
-      await fetch("http://127.0.0.1:5000/liked-songs/remove", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          user_id: userId,
-          song_id: songId,
-        }),
-      });
+      await fetch(
+        `http://127.0.0.1:5000/playlists/${playlistId}/remove`,
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ song_id: songId }),
+        }
+      );
 
-   
-      setSongs((prev) => prev.filter((s) => s.id !== songId));
+     
+      setSongs(prev => prev.filter(song => song.id !== songId));
     } catch (err) {
       console.error("Failed to remove song", err);
     }
@@ -92,30 +68,26 @@ function MySongs() {
             </div>
 
             <div className="song-section">
-              <h1>Liked Songs</h1>
+              <h1>Playlist Songs</h1>
 
-              {songs.length === 0 && <p>No liked songs yet</p>}
+              {songs.length === 0 && <p>No songs yet</p>}
 
-              {songs.map((song) => (
+              {songs.map(song => (
                 <div className="song-item" key={song.id}>
                   <button onClick={() => playSong(song)}>
                     {song.title}
                   </button>
 
                   <button
-                    onClick={() => removeFromLiked(song.id)}
+                    onClick={() => removeSong(song.id)}
                     style={{ background: "none", border: "none" }}
                   >
-                    <img
-                      src={dots}
-                      className="menu-icon"
-                      alt="remove"
-                    />
+                    <img src={dots} className="menu-icon" alt="remove" />
                   </button>
                 </div>
               ))}
-
             </div>
+
           </div>
         </div>
       </div>
@@ -127,4 +99,4 @@ function MySongs() {
   );
 }
 
-export default MySongs;
+export default PlaylistDetails;

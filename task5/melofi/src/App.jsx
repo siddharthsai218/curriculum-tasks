@@ -10,6 +10,8 @@ import MySongs from "./pages/likedsongs";
 import Player from "./pages/player";
 import Settings from "./pages/settings";
 import Download from "./pages/downloads";
+import PlaylistDetails from "./pages/PlaylistDetails";
+import SearchResults from "./pages/SearchResults";
 
 function App() {
   return (
@@ -25,6 +27,8 @@ function App() {
       <Route path="/downloads" element={<Download />} />
       <Route path="/player" element={<Player />} />
       <Route path="/settings" element={<Settings />} />
+      <Route path="/playlists/:playlistId" element={<PlaylistDetails />} />
+      <Route path="/search" element={<SearchResults />} />
     </Routes>
   );
 }

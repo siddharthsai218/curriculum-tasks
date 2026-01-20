@@ -66,3 +66,11 @@ body {
   height: 90px;
  
 }
+
+.Add {
+  align-items: end;
+  justify-content: end;
+}
+.download-btn {
+  
+}

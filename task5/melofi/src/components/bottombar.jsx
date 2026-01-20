@@ -1,68 +1,104 @@
-import play from "../assets/play.png";
-import next from "../assets/next.png";
-import previous from "../assets/prev.png";
-import more from "../assets/more.png";
-import like from "../assets/like.png";
-import shuffle from "../assets/shuffle.png";
+import { useEffect, useState } from "react";
+import { usePlayer } from "../components/PlayerContext.jsx";
+import {
+  FaPlay,
+  FaPause,
+  FaStepBackward,
+  FaStepForward,
+  FaHeart,
+  FaRegHeart,
+} from "react-icons/fa";
 import "./bottombar.css";
-import { Link } from "react-router-dom";
-
 
 export default function Bottombar() {
+  const { currentSong, isPlaying, togglePlay } = usePlayer();
+  const [liked, setLiked] = useState(false);
+
+  const userId = localStorage.getItem("user_id");
+
+
+  useEffect(() => {
+    setLiked(false);
+  }, [currentSong?.id]);
+
+  if (!currentSong) return null;
+
+  const toggleLike = async () => {
+    if (!userId) return;
+
+    let endpoint;
+
+    if (liked) {
+      endpoint = "http://127.0.0.1:5000/liked-songs/remove";
+    } else {
+      endpoint = "http://127.0.0.1:5000/liked-songs/add";
+    }
+
+    try {
+      await fetch(endpoint, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          user_id: userId,
+          song_id: currentSong.id,
+        }),
+      });
+
+     
+      setLiked(!liked);
+    } catch (err) {
+      console.error("Failed to toggle like", err);
+    }
+  };
+
   return (
     <div className="bottombar-container">
+      
+      <div
+        className="Image"
+        style={{
+          backgroundImage: `url(${currentSong.cover})`,
+          backgroundSize: "cover",
+        }}
+      />
 
       
-      <div className="Image"></div>
-
-      
-      <div className="Song">Song Name</div>
-      <div className="Artist">Artist</div>
+      <div>
+        <div className="Song">{currentSong.title}</div>
+        <div className="Artist">{currentSong.artist}</div>
+      </div>
 
       
       <button className="prev">
-        <img src={previous} alt="previous" />
+        <FaStepBackward size={18} />
       </button>
 
-      
-      <Link to="/player" className="menu-link">
-      <button className="play">
-        <img src={play} alt="like" />
-        
+      <button className="play" onClick={togglePlay}>
+        {isPlaying ? <FaPause size={22} /> : <FaPlay size={22} />}
       </button>
-      </Link>
 
-      
-
-      
       <button className="next">
-        <img src={next} alt="next" />
+        <FaStepForward size={18} />
       </button>
-
-      
-      <div className="Slider"></div>
 
      
-      <div className="details">
-        00:00 / 00:00
-        </div>
+      <div className="Slider"></div>
+      <div className="details">00:00 / 00:00</div>
 
       
-      <button className="Like">
-        <img src={like} alt="like" />
+      <button
+        className="like-btn"
+        onClick={toggleLike}
+        style={{ background: "none", border: "none" }}
+      >
+        {liked ? (
+          <FaHeart size={20} color="#1db954" />
+        ) : (
+          <FaRegHeart size={20} color="white" />
+        )}
       </button>
-
-      
-      <button className="details shuffle-btn">
-        <img src={shuffle} alt="shuffle" />
-      </button>
-
-      
-      <button className="details more-btn">
-        <img src={more} alt="more" />
-      </button>
-
     </div>
   );
 }
-

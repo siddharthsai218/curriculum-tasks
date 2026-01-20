@@ -168,3 +168,14 @@
   width: 18px;
   height: 18px;
 }
+
+.bottombar-container {
+  color: white; 
+}
+
+.prev,
+.play,
+.next,
+.like-btn {
+  color: white;
+}

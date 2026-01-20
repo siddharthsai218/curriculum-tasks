@@ -30,11 +30,16 @@ import "./index.css";
 import Playlist from "./pages/playlist.jsx";
 import Dashboard from "./pages/dashboard.jsx";
 import MySongs from "./pages/likedsongs.jsx";
+import Topbar from "./components/topbar.jsx";
+import { PlayerProvider } from "./components/PlayerContext.jsx";
 
 createRoot(document.getElementById("root")).render(
   <StrictMode>
-    <BrowserRouter>
-      <App />
-    </BrowserRouter>
+    <PlayerProvider>
+      <BrowserRouter>
+        <App />
+      </BrowserRouter>
+    </PlayerProvider>
   </StrictMode>
 );
+
