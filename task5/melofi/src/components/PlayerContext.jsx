@@ -16,6 +16,22 @@ export const PlayerProvider = ({ children }) => {
 
     setCurrentSong(song);
     setIsPlaying(true);
+
+    // 🔥 Save history
+    const userId = localStorage.getItem("user_id");
+
+    if (userId) {
+      fetch("http://127.0.0.1:5000/history/add", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          user_id: userId,
+          song_id: song.id,
+        }),
+      }).catch((err) =>
+        console.error("Failed to save history", err)
+      );
+    }
   };
 
   const togglePlay = () => {
