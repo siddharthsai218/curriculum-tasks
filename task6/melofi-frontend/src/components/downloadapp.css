@@ -1,0 +1,9 @@
+.download-app {
+  padding: 8px 20px;
+  border-radius: 20px;
+  border: 1.5px solid #E07A5F; 
+  background: transparent;
+  color: white;
+  font-size: 14px;
+  outline: none;
+}

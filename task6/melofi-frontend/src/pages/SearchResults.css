@@ -1,0 +1,83 @@
+.search-page {
+  padding: 20px 30px;
+  color: white;
+}
+
+.search-title {
+  font-size: 22px;
+  margin-bottom: 20px;
+}
+
+.search-title span {
+  color: #1db954;
+}
+
+.status-text {
+  color: #b3b3b3;
+  margin-top: 20px;
+}
+
+.songs-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+  gap: 20px;
+}
+
+.song-card {
+  background-color: #181818;
+  border-radius: 10px;
+  padding: 12px;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.song-card:hover {
+  background-color: #282828;
+}
+
+.song-cover {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  border-radius: 8px;
+  object-fit: cover;
+}
+
+.song-info {
+  margin-top: 10px;
+}
+
+.song-title {
+  font-size: 14px;
+  font-weight: 600;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.song-artist {
+  font-size: 12px;
+  color: #b3b3b3;
+}
+
+
+.playlist-actions {
+  margin-top: 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.add-btn {
+  background: transparent;
+  border: 1px solid #333;
+  color: #b3b3b3;
+  font-size: 12px;
+  padding: 4px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.add-btn:hover {
+  background: #1db954;
+  color: black;
+}

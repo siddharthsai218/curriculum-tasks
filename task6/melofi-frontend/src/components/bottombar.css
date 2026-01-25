@@ -1,0 +1,181 @@
+.bottombar-container {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+
+  height: 90px;
+  width: 100%;
+  background-color: #282828;
+
+  display: flex;
+  align-items: center;
+  padding: 0 24px;
+  box-sizing: border-box;
+}
+
+
+
+.Image {
+  width: 55px;
+  height: 55px;
+  border-radius: 50%;
+  background-color: #d9d9d9;
+  margin-right: 16px;
+}
+
+.Song {
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.Artist {
+  font-size: 12px;
+  opacity: 0.7;
+}
+
+
+
+.prev {
+  background: none;
+  border: none;
+  
+
+  width: 44px;
+  height: 44px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.play {
+  background: none;
+  border: none;
+  
+
+  width: 44px;
+  height: 44px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.next {
+  background: none;
+  border: none;
+  
+
+  width: 44px;
+  height: 44px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.prev img,
+.play img,
+.next img {
+  width: 22px;
+  height: 22px;
+}
+
+
+.prev {
+  margin-left: auto;
+}
+
+.play {
+  margin: 0 12px;
+}
+
+.next {
+  margin-right: auto;
+}
+
+
+
+.Slider {
+  position: absolute;
+  bottom: 14px;
+  left: 50%;
+  transform: translateX(-50%);
+
+  width: 520px;
+  height: 4px;
+  background: #d9d9d9;
+  border-radius: 2px;
+}
+
+
+
+.details {
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: white;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  margin-left: 12px;
+}
+.Like {
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: white;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  margin-left: 12px;
+}
+.shuffle-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: white;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  margin-left: 12px;
+}
+.more-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: white;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  margin-left: 12px;
+}
+
+.details {
+  font-size: 12px;
+  opacity: 0.7;
+}
+
+.Like img,
+.shuffle-btn img,
+.more-btn img {
+  width: 18px;
+  height: 18px;
+}
+
+.bottombar-container {
+  color: white; 
+}
+
+.prev,
+.play,
+.next,
+.like-btn {
+  color: white;
+}
